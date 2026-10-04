@@ -12,6 +12,7 @@ import { useNotify, useRefresh } from "ra-core";
 
 import { usePapaParse } from "../misc/usePapaParse";
 import { DataImportDialog } from "./DataImportDialog";
+import { ContactReviewDialog } from "./ContactReviewDialog";
 import { DataImportProgressToast } from "./DataImportProgressToast";
 import type { ImportableResource, ImportRow } from "./types";
 import type { ImportableResourceName } from "./useImportableResources";
@@ -21,6 +22,7 @@ type DataImportContextValue = {
   resources: ImportableResource[];
   isImporting: boolean;
   openDialog(resource?: ImportableResourceName): void;
+  openContactReview(): void;
 };
 
 const DataImportContext = createContext<DataImportContextValue | undefined>(
@@ -42,6 +44,8 @@ export const DataImportProvider = ({ children }: { children: ReactNode }) => {
   const refresh = useRefresh();
   const resources = useImportableResources();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [reviewOpen, setReviewOpen] = useState(false);
+  const [reviewBusy, setReviewBusy] = useState(false);
   const [pinnedName, setPinnedName] = useState<ImportableResourceName | null>(
     null,
   );
@@ -63,7 +67,7 @@ export const DataImportProvider = ({ children }: { children: ReactNode }) => {
   });
 
   const isImporting =
-    importer.state === "parsing" || importer.state === "running";
+    reviewBusy || importer.state === "parsing" || importer.state === "running";
 
   useEffect(() => {
     if (importer.state === "complete") {
@@ -126,7 +130,12 @@ export const DataImportProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const value = useMemo(
-    () => ({ resources, isImporting, openDialog }),
+    () => ({
+      resources,
+      isImporting,
+      openDialog,
+      openContactReview: () => setReviewOpen(true),
+    }),
     [resources, isImporting, openDialog],
   );
 
@@ -148,6 +157,14 @@ export const DataImportProvider = ({ children }: { children: ReactNode }) => {
         />
       )}
       <DataImportProgressToast importer={importer} onStop={stopImport} />
+      {resources.find(({ name }) => name === "contacts") && (
+        <ContactReviewDialog
+          open={reviewOpen}
+          resource={resources.find(({ name }) => name === "contacts")!}
+          onClose={() => setReviewOpen(false)}
+          onBusyChange={setReviewBusy}
+        />
+      )}
     </DataImportContext.Provider>
   );
 };

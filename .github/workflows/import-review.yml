@@ -1,0 +1,22 @@
+name: Contact import review
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CI: 'true'
+      NODE_ENV: CI
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium --only-shell
+      - run: npm run typecheck
+      - run: npm run test:unit:app -- --run --project app src/components/atomic-crm/dataImport
+      - run: npm run build:demo

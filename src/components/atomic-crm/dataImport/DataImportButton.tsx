@@ -16,7 +16,8 @@ export const DataImportButton = ({
   resource?: ImportableResourceName;
 }) => {
   const translate = useTranslate();
-  const { resources, isImporting, openDialog } = useDataImportContext();
+  const { resources, isImporting, openDialog, openContactReview } =
+    useDataImportContext();
   const available = resource
     ? resources.filter(({ name }) => name === resource)
     : resources;
@@ -25,15 +26,30 @@ export const DataImportButton = ({
   if (!available.length) return null;
 
   return (
-    <Button
-      variant="outline"
-      onClick={() => openDialog(resource)}
-      disabled={isImporting}
-      title={isImporting ? translate("crm.data_import.in_progress") : undefined}
-      className="flex items-center gap-2 cursor-pointer"
-    >
-      <Upload />{" "}
-      {translate(resource ? "crm.data_import.button" : "crm.data_import.title")}
-    </Button>
+    <>
+      <Button
+        variant="outline"
+        onClick={() => openDialog(resource)}
+        disabled={isImporting}
+        title={
+          isImporting ? translate("crm.data_import.in_progress") : undefined
+        }
+        className="flex items-center gap-2 cursor-pointer"
+      >
+        <Upload />{" "}
+        {translate(
+          resource ? "crm.data_import.button" : "crm.data_import.title",
+        )}
+      </Button>
+      {available.some(({ name }) => name === "contacts") && (
+        <Button
+          variant="outline"
+          disabled={isImporting}
+          onClick={openContactReview}
+        >
+          Review contacts
+        </Button>
+      )}
+    </>
   );
 };

@@ -1,0 +1,7 @@
+first_name,last_name,email_work,company,tags,phone_work,has_newsletter
+Ada,Review,ada-review@example.test,Demo Import Company,review,001234,false
+Ben,Review,duplicate@example.test,,,,false
+Bea,Review,DUPLICATE@example.test,,,,false
+Invalid,Email,not-an-email,,,,false
+No,Email,,,,,false
+Sam,Review,sam-review@example.test,Demo Import Company,review,004567,false

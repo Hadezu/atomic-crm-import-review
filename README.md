@@ -1,3 +1,9 @@
+# Atomic CRM — contact import review extension
+
+Independent extension by Ivan Matiushkin. **Start with [the case study](CASE-STUDY.md)** for the problem, my changes, runnable demo, tests and limitations. Upstream Atomic CRM remains credited below and its MIT licence is preserved.
+
+---
+
 # Atomic CRM
 
 A full-featured CRM built with React, shadcn-admin-kit, and Supabase.
