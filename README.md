@@ -2,6 +2,12 @@
 
 Independent extension by Ivan Matiushkin. **Start with [the case study](CASE-STUDY.md)** for the problem, my changes, runnable demo, tests and limitations. Upstream Atomic CRM remains credited below and its MIT licence is preserved.
 
+**My contribution:** a contact CSV review before creation, with duplicate/conflict classification, explicit row selection and per-row results. [Run this extension locally](CASE-STUDY.md#try-it-without-a-cloud-account) or inspect [executed verification](docs/import-review-verification.md).
+
+![This extension: contact CSV review](docs/images/contact-review.png)
+
+**Upstream reference below:** Marmelab's video and hosted demo show the original CRM, not this contact-review extension. The extension's reproducible demo uses synthetic data with the in-browser FakeRest provider; live Supabase validation is not claimed.
+
 ---
 
 # Atomic CRM
