@@ -1,5 +1,11 @@
 # Atomic CRM — contact import review extension
 
+<!-- portfolio-navigation:start -->
+[← Project index](https://github.com/Hadezu#selected-implementations) · [Improve existing software](https://work.matiushkin.com/en/services/software-improvements) · [Describe a similar task](https://work.matiushkin.com/en/contact?example=services%2Fsoftware-improvements)
+
+**Review format:** Local extension and captured walkthrough. The upstream hosted CRM is not a deployment of this extension.
+<!-- portfolio-navigation:end -->
+
 Independent extension by Ivan Matiushkin. **Start with [the case study](CASE-STUDY.md)** for the problem, my changes, runnable demo, tests and limitations. Upstream Atomic CRM remains credited below and its MIT licence is preserved.
 
 **My contribution:** a contact CSV review before creation, with duplicate/conflict classification, explicit row selection and per-row results. [Run this extension locally](CASE-STUDY.md#try-it-without-a-cloud-account) or inspect [executed verification](docs/import-review-verification.md).
