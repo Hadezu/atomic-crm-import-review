@@ -51,9 +51,12 @@ npx playwright install chromium --only-shell
 npm run typecheck
 npm run test:unit:app -- --run --project app src/components/atomic-crm/dataImport
 npm run build:demo
+npx playwright test --config playwright.import.config.ts
 ```
 
 See [verification](docs/import-review-verification.md) for actual results. The additional `import-review.yml` CI workflow validates this scope without deploying.
+
+The dedicated full-browser scenario runs the built FakeRest demo: preview six synthetic rows, cancel without writes, reopen, deselect a valid row, create two contacts, download and validate all six row results, and re-preview to identify the two existing contacts. It checks those contacts in the mobile list and rejects browser errors. The upstream mobile layout has no CSV-review action. CI retains JUnit, screenshots, video, the downloaded JSON and failure traces for 14 days. This supplements the scoped unit/browser component tests; it does not substitute for live-backend verification.
 
 ## Deliberate limits
 

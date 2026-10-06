@@ -20,3 +20,12 @@ jobs:
       - run: npm run typecheck
       - run: npm run test:unit:app -- --run --project app src/components/atomic-crm/dataImport
       - run: npm run build:demo
+      - name: Full contact-import browser scenario (shipped FakeRest demo)
+        run: npx playwright test --config playwright.import.config.ts
+      - name: Save browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: contact-import-browser-evidence
+          path: test-results/
+          retention-days: 14

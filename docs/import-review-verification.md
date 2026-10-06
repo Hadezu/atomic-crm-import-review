@@ -1,5 +1,15 @@
 # Verification — 2026-10-04
 
+## Full browser acceptance gate — 2026-10-06
+
+The standard workflow now also runs `npx playwright test --config playwright.import.config.ts` against its built, telemetry-disabled FakeRest demo. The complete flow includes cancel-without-write, duplicate/invalid classification, deselection, two creations, downloaded six-row results and a repeat preview that marks created contacts as existing. Mobile verification covers the real contact list; upstream mobile has no import-review control.
+
+Local build and TypeScript checks passed. The final full-browser scenario passed, then passed two consecutive fresh-context repetitions (20.1 seconds total). The harness captures the dialog directly: full-page screenshots can resize responsive layouts and are inappropriate inside this modal workflow. No application behavior or provider implementation was altered to pass the test.
+
+CI uploads JUnit, screenshots, video, downloaded results and failure traces under `contact-import-browser-evidence` for 14 days. Hosted success must be checked on the actual commit; this paragraph records local evidence only.
+
+## Historical baseline
+
 Environment: Windows, Node 24.15.0, npm 11.12.1. Upstream baseline `b23289b46734d796e74edd3ef224cbf23792ff82`; lockfile installation, no live Supabase project.
 
 | Check | Observed result |
