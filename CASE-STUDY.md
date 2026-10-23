@@ -1,6 +1,6 @@
 # Contact CSV review — extension of Atomic CRM
 
-Independent engineering example by Ivan Matiushkin, developed with Codex. The CRM itself is **[Atomic CRM by Marmelab](https://github.com/marmelab/atomic-crm)**, licensed under MIT. This is an attributed extension, not a claim to have built the CRM or delivered it for a client.
+A contact-import review workflow built by Ivan Matiushkin inside **[Atomic CRM by Marmelab](https://github.com/marmelab/atomic-crm)** (MIT). Operators inspect duplicates and conflicts before choosing which records to create.
 
 Upstream baseline: `b23289b46734d796e74edd3ef224cbf23792ff82`.
 
